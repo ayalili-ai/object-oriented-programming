@@ -15,17 +15,16 @@ public class MainWindow extends JFrame {
 
     public MainWindow() {
         FlatLightLaf.setup();
+
         setTitle("Internship Management System");
         setSize(1000, 650);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // ===================== PALETTE =====================
         Color BLUE_MAIN = new Color(0x00, 0x57, 0xD9);
         Color WHITE = Color.WHITE;
 
-        // ===================== HEADER =====================
         JPanel header = new JPanel(new BorderLayout());
         header.setBackground(BLUE_MAIN);
 
@@ -57,7 +56,6 @@ public class MainWindow extends JFrame {
         header.add(headerText, BorderLayout.SOUTH);
         add(header, BorderLayout.NORTH);
 
-        // ===================== CENTER =====================
         JPanel center = new JPanel(new BorderLayout());
         center.setBackground(WHITE);
 
@@ -73,14 +71,13 @@ public class MainWindow extends JFrame {
             center.add(fallback, BorderLayout.CENTER);
         }
 
-        JLabel slogan = new JLabel("Your Skills , Our Goal", SwingConstants.CENTER);
+        JLabel slogan = new JLabel("Your Skills, Our Goal", SwingConstants.CENTER);
         slogan.setForeground(BLUE_MAIN);
         slogan.setFont(new Font("Segoe UI", Font.BOLD, 22));
         center.add(slogan, BorderLayout.SOUTH);
 
         add(center, BorderLayout.CENTER);
 
-        // ===================== BOTTOM BUTTONS =====================
         JPanel bottom = new JPanel(new GridLayout(1, 3, 20, 0));
         bottom.setBorder(BorderFactory.createEmptyBorder(10, 40, 20, 40));
         bottom.setBackground(WHITE);
@@ -102,14 +99,21 @@ public class MainWindow extends JFrame {
         bottom.add(admin);
         add(bottom, BorderLayout.SOUTH);
 
-        // ===================== ACTIONS =====================
         student.addActionListener(e -> {
             RegistrationService registrationService = new RegistrationService();
             FileManager fileManager = new FileManager();
-            List<User> users = new ArrayList<>();
-            List<Student> students = new ArrayList<>();
 
-            new StudentAuthWindow(registrationService, fileManager, users, students).setVisible(true);
+            List<Student> students = fileManager.loadStudents();
+            List<User> users = new ArrayList<>();
+            users.addAll(students);
+
+            new StudentAuthWindow(
+                    registrationService,
+                    fileManager,
+                    users,
+                    students
+            ).setVisible(true);
+
             dispose();
         });
 

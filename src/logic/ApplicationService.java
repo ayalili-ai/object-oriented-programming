@@ -122,4 +122,8 @@ public class ApplicationService {
     public static void setNextApplicationId(int nextId) {
         nextApplicationId = nextId;
     }
+
+    public static int getNextApplicationId() {
+        return nextApplicationId;
+    }
 }

@@ -309,8 +309,7 @@ public class FileManager {
                     application.setRejectReason(parseString(data[5]));
                     application.setInterviewDate(parseDate(data[6]));
 
-                    // dateApplied has no setter in your model, so keep constructor date for now.
-                    // Best fix: add setDateApplied(LocalDate dateApplied) in Application model.
+                    application.setDateApplied(parseDate(data[7]));
                     application.setDateFinalDecision(parseDate(data[8]));
 
                     applications.add(application);

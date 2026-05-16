@@ -15,8 +15,7 @@ public class Application {
         this.id = id;
         this.student = student;
         this.offer = offer;
-        this.status = status.PENDING_ADMIN; // Default status
-        this.dateApplied = LocalDate.now();
+        this.status = Status.PENDING_ADMIN;        this.dateApplied = LocalDate.now();
     }
     //Getters & Setters
 
@@ -87,5 +86,9 @@ public class Application {
 
     public void setDateFinalDecision(LocalDate dateFinalDecision) {
         this.dateFinalDecision = dateFinalDecision;
+    }
+
+    public void setDateApplied(LocalDate dateApplied) {
+        this.dateApplied = dateApplied;
     }
 }
